@@ -16,7 +16,7 @@ jobs:
         uses: dawidd6/action-get-tag@v1
 
       - name: Replace image
-        uses: mikefarah/yq@4.0.0-beta1
+        uses: mikefarah/yq@v4.9.3
         with:
           cmd: yq eval '.spec.template.spec.containers[0].image = "${{steps.tag.outputs.tag}}"' deployment.yaml
       
