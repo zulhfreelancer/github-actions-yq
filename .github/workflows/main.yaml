@@ -18,7 +18,7 @@ jobs:
       - name: Replace image
         uses: mikefarah/yq@v4.9.3
         with:
-          cmd: yq eval '.spec.template.spec.containers[0].image = "${{steps.tag.outputs.tag}}"' deployment.yaml
+          cmd: yq eval '.spec.template.spec.containers[0].image = "${{steps.tag.outputs.tag}}"' deployment.yaml > deployment.yaml
       
       - name: Print manifest
         run: |
