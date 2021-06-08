@@ -1,0 +1,25 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Get current Git tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+
+      - name: Replace image
+        uses: mikefarah/yq@4.0.0-beta1
+        with:
+          cmd: yq eval '.spec.template.spec.containers[0].image = "${{steps.tag.outputs.tag}}"' deployment.yaml
+      
+      - name: Print manifest
+        run: |
+          cat deployment.yaml
