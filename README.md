@@ -6,8 +6,11 @@ On high level, here is how the workflow should work:
 
 1. Developer push a commit with a tag
 2. Workflow starts
+    
     a. Update/inplace update the container image in the _deployment.yaml_ file using [yq](https://mikefarah.gitbook.io/yq/operators/assign-update)
+    
     b. Add and commit the _deployment.yaml_ file back to this repository
+
 3. Workflow ends
 
 ## Status
